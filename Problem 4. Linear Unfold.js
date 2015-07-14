@@ -1,3 +1,4 @@
+FunctionalJSModule.linearUnfold = linearUnfold;
 function linearUnfold (initialCounterValue, unfoldedFunction) {
     if(typeof unfoldedFunction !== 'function'){
         return 'incorrect input';

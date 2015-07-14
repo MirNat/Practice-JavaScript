@@ -1,3 +1,4 @@
+FunctionalJSModule.linearFold = linearFold;
 function linearFold (targetArray, initialCounterValue, foldedFunction) {
     if( !Array.isArray( targetArray ) || typeof foldedFunction !== 'function' ) {
         return 'incorrect input';

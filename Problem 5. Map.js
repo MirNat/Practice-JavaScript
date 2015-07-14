@@ -1,3 +1,4 @@
+FunctionalJSModule.map = map;
 function map (targetArray, mappingFunction) {
     if(!Array.isArray( targetArray ) || typeof mappingFunction !== 'function'){
         return 'incorrect input';
