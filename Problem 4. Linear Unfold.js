@@ -2,7 +2,7 @@ function linearUnfold (initialCounterValue, unfoldedFunction) {
     if(typeof unfoldedFunction !== 'function'){
         return 'incorrect input';
     }
-    var arrayOfValues = new Array();
+    var arrayOfValues = [];
     var counterValue = initialCounterValue;
     var endCondition = false;
     while(!endCondition){
