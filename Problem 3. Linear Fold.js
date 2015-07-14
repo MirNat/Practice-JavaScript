@@ -1,4 +1,4 @@
-function linearFold( targetArray, initialCounterValue, foldedFunction ) {
+function linearFold (targetArray, initialCounterValue, foldedFunction) {
     if( !Array.isArray( targetArray ) || typeof foldedFunction !== 'function' ) {
         return 'incorrect input';
     }
@@ -12,7 +12,7 @@ function linearFold( targetArray, initialCounterValue, foldedFunction ) {
     return counterValue;
  }
 
- function add( x, y ) {
+ function add (x, y) {
     return x + y;
 }
 
