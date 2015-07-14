@@ -1,4 +1,4 @@
-Function.prototype.partialApply= function(){
+Function.prototype.partialApply = function(){
     var func = this;
     args = Array.prototype.slice.call(arguments);
     return function(){
@@ -21,17 +21,11 @@ function numbersToHex(){
     return Array.prototype.map.call(arguments, componentToHex).join('');
 }
 
-console.log('Problem 1. Partial Application');
+document.write('Problem 1. Partial Application<br/>');
 
 // the function works on any number of inputs
-console.log('The function work (converts numbers to hexadecimal values): ');
-console.log(numbersToHex(0));// '00'
-console.log(numbersToHex(10,20));// '0a14'
-console.log(numbersToHex(10,20,30,40,50,60,70));// '0a141e28323c46'
+document.write('The function`s work (converts numbers to hexadecimal values) on inputs [0], [10,20], [10,20,30,40,50,60]: ' + numbersToHex(0) + ', ' + numbersToHex(10,20) + ', ' + numbersToHex(10,20,30,40,50,60) +'<br/>');// '00, 0a14, 0a141e28323c'
 
 // use of the partial function to partially apply arguments 
-console.log('The partial function work: ');
 var numbersToHexPartial = numbersToHex.partialApply('');//empty string at the beginning
-console.log(numbersToHexPartial(0));// '00'
-console.log(numbersToHexPartial(10,20));// '0a14'
-console.log(numbersToHexPartial(10,20,30,40,50,60,70));// '0a141e28323c46'
+document.write('The partial function`s work: ' + numbersToHexPartial(0) + ', ' + numbersToHexPartial(10,20) + ', ' + numbersToHexPartial(10,20,30,40,50,60) + '<br/>');// '00, 0a14, 0a141e28323c'

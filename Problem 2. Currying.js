@@ -36,18 +36,18 @@ function numbersToHex(){
 
 //converts rgb to hexadecimal string
 function rgbToHex(r,g,b){
+    if(r < 0  ||  g < 0  ||  b < 0){
+        return 'incorrect input';
+    }
+
     return '#' + numbersToHex(r) + numbersToHex(g) + numbersToHex(b);
 }
 
-console.log('Problem 2. Currying');
+document.write('<br/>Problem 2. Currying<br/>');
 
 // the function works on any number of inputs
-console.log('The function work (converts rgb to hexadecimal string): ');
-console.log(rgbToHex(10,20,30));// '#0a141e'
-console.log(rgbToHex(40,50,60));// '#28323c'
+document.write('The function`s work (converts rgb to hexadecimal string) on inputs [10,20,30] and [40,50,60]: ' + rgbToHex(10,20,30) + ', ' + rgbToHex(40,50,60) +'<br/>');// '#0a141e, #28323c'
 
 // use of the partial function to partially apply arguments 
-console.log('The currying function work: ');
 var rgbToHexCurry = rgbToHex.curry();//empty string at the beginning
-console.log(rgbToHexCurry(10)(20)(30));// '#0a141e'
-console.log(rgbToHexCurry(40)(50)(60));// '#28323c'
+document.write('The currying function`s work: ' + rgbToHexCurry(10)(20)(30) + ', ' + rgbToHexCurry(40)(50)(60) + '<br/>'); // '#0a141e, #28323c'
