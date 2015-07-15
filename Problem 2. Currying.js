@@ -1,7 +1,8 @@
+FunctionalJSModule.curry = curry;
 // numArgs lets optionally specify the number of arguments the function being curried needs if it`s not explicitly defined
-Function.prototype.curry = function (numberOfArgs) {
-    var currentFunction = this;
-	numberOfArgs = numberOfArgs || currentFunction.length;
+function curry (targetFunction, numberOfArgs) {
+    //var currentFunction = this;
+	numberOfArgs = numberOfArgs || targetFunction.length;
 	
     //recursively acquire the arguments
 	function subCurry (previous) {
@@ -12,7 +13,7 @@ Function.prototype.curry = function (numberOfArgs) {
 				return subCurry(args);
 			}
 			else{
-				return currentFunction.apply(this, args);
+				return targetFunction.apply(this, args);
 			}
 		};
     }
@@ -43,5 +44,5 @@ document.write('<br/>Problem 2. Currying<br/>');
 document.write('The function`s work (converts rgb to hexadecimal string) on inputs [10,20,30] and [40,50,60]: ' + rgbToHex(10,20,30) + ', ' + rgbToHex(40,50,60) +'<br/>');// '#0a141e, #28323c'
 
 // use of the currying function to transform function with N arguments into a chain of N functions with 1 argument
-var rgbToHexCurry = rgbToHex.curry();//empty string at the beginning
+var rgbToHexCurry = curry(rgbToHex);//empty string at the beginning
 document.write('The currying function`s work: ' + rgbToHexCurry(10)(20)(30) + ', ' + rgbToHexCurry(40)(50)(60) + '<br/>'); // '#0a141e, #28323c'
