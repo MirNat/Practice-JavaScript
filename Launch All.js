@@ -45,14 +45,14 @@ function separateStringBeforeSpace (stringToParse) {
 //1
 document.write('Problem 1. Partial Application<br/>');
 document.write('The function`s work (converts numbers to hexadecimal values) on inputs [0], [10,20], [10,20,30,40,50,60]: ' + numbersToHex(0) + ', ' + numbersToHex(10,20) + ', ' + numbersToHex(10,20,30,40,50,60) +'<br/>');// '00, 0a14, 0a141e28323c'
-var numbersToHexPartial = partialApply(numbersToHex,'');//empty string at the beginning
+var numbersToHexPartial = FunctionalJSModule.partialApply(numbersToHex,'');//empty string at the beginning
 document.write('The partial function`s work: ' + numbersToHexPartial(0) + ', ' + numbersToHexPartial(10,20) + ', ' + numbersToHexPartial(10,20,30,40,50,60) + '<br/>');// '00, 0a14, 0a141e28323c'
 
 
 //2
 document.write('<br/>Problem 2. Currying<br/>');
 document.write('The function`s work (converts rgb to hexadecimal string) on inputs [10,20,30] and [40,50,60]: ' + rgbToHex(10,20,30) + ', ' + rgbToHex(40,50,60) +'<br/>');// '#0a141e, #28323c'
-var rgbToHexCurry = curry(rgbToHex);//empty string at the beginning
+var rgbToHexCurry = FunctionalJSModule.curry(rgbToHex);//empty string at the beginning
 document.write('The currying function`s work: ' + rgbToHexCurry(10)(20)(30) + ', ' + rgbToHexCurry(40)(50)(60) + '<br/>'); // '#0a141e, #28323c'
 
 
