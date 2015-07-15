@@ -2,7 +2,7 @@
     'use scrict';
 
 	//Language
-	
+
 
 	var isArray = function (obj) {
 		return Object.prototype.toString.call( obj ) === '[object Array]';
@@ -13,7 +13,7 @@
 	}
 
 	var isDate = function (obj) {
-		return toString.call(obj) === '[object Date]';;
+		return obj instanceof Date && !isNaN(obj.valueOf());
 	}
 
 	var isNumber = function (obj) {
@@ -118,33 +118,43 @@
 	}
 
 	var chainAs = function (targetArray){
-		this.array = targetArray;
-		this.where = function ( predicate ) {
-        	targetArray = where(this.array, predicate);
-        	this.array = targetArray;
-        	return this;
-        };
-        this.first = function (predicate) {
-        	targetArray = first(this.array, predicate);
-        	this.array = targetArray;
-        	return this;
-        };
-        this.last = function (predicate) {
-        	targetArray = last(this.array, predicate);
-        	this.array = targetArray;
-        	return this;
-        };
-        this.select = function (selector) {
-        	targetArray = select(this.array, select);
-        	this.array = targetArray;
-        	return this;
-        };
+		var arrayForReturn = targetArray;
+		return{
+			forEach: function (action) {
+                this.arrayForReturn = workWithArrays.forEach(arrayForReturn, action);
+                return this;
+            },
+			where: function (predicate) {
+	        	this.arrayForReturn = where(arrayForReturn, predicate);
+	        	return this;
+	        },
+	        first: function (predicate) {
+	        	this.arrayForReturn = first(arrayForReturn, predicate);
+	        	return this;
+	        },
+	        last: function (predicate) {
+	        	this.arrayForReturn = last(arrayForReturn, predicate);
+	        	return this;
+	        },
+	        select: function (selector) {
+	        	this.arrayForReturn = select(arrayForReturn, selector);
+	        	return this;
+	        },
 
-        if (this instanceof chainAs) {
-    		return this.chainAs;	
-    	} else {
-    		return new chainAs(targetArray);	
-   		}
+            skip: function(count) {
+                this.arrayForReturn = skip(arrayForReturn, count);
+                return this;
+            },
+
+            take: function(count) {
+                this.arrayForReturn = take(arrayForReturn, count);
+                return this;
+            },
+
+            result: function() {
+                return this.arrayForReturn;
+            }
+        };
     }
 
     MiniJSLibrary.isArray = isArray;
@@ -161,5 +171,5 @@
 	MiniJSLibrary.select = select;
 	MiniJSLibrary.skip = skip;
 	MiniJSLibrary.take = take;
-	MiniJSLibrary.chainAsas = chainAs;
+	MiniJSLibrary.chainAs = chainAs;
 })();
