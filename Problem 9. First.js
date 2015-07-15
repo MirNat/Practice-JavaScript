@@ -11,11 +11,3 @@ function first (targetArray, filteringFunction) {
 
     return 'not found';
  }
-
-positiveNumbersFilter = function (number) {
-    return number >= 0;
-};
-
-document.write('<br/>Problem 9. First <br/>');
-document.write('The function`s work (filter by positive value) on input [-10,-20,30,-40,50,0]: ' + first([-10,-20,30,-40,50,0], positiveNumbersFilter) + '<br/>');// '30'
-
