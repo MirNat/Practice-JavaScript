@@ -15,8 +15,7 @@
 				if (args.length < numberOfArgs) {
 					//recursive case: we still need more args
 					return subCurry(args);
-				}
-				else {
+				} else {
 					return targetFunction.apply(this, args);
 				}
 			};

@@ -1,0 +1,1 @@
+var testChainAs = new chainAs();
