@@ -1,0 +1,42 @@
+Создать JS мини-библиотеку, реализующую заданный функционал (описан ниже) и примеры использования каждого открытого метода.
+Подумать над реализацией открытого/закрытого доступа к функциям/переменным данной библиотеки.
+Открытые функции:
+	Языковые:
+1)	bool isArray(obj) - является ли объект массивом
+2)  bool isBoolean(obj)
+3)	bool isDate(obj)
+4)  bool isNumber(obj)
+5)	bool isString(obj)
+6)  bool isFunction(obj)
+7)	bool isUndefined(obj)
+8)  bool isNull(obj)
+
+	Работа с массивами
+1)	void   forEach(arr, func action)
+2) newArr where(arr, func predicate)
+3) obj    first(arr)
+4) obj    last(arr)
+5) newArr select(arr, func selector)
+6) newArr skip(arr, number)
+7) newArr take(arr, number)
+
+	Цепочки вызовов (доп. задание)
+Реализовать возможность создания цепочек:
+
+	asChain(arr).where(func).where(func).select(func)
+
+
+	Вспомогательные функции:
+1)	newFunc singleton(func creator) - возвращает новую функцию, которая вызовет creator при первом обращении, 
+		все последующие вызовы будут возвращать кешированный результат
+2)  newFunc partial(func original, obj arg1) - возвращает новую функцию с меньшим количество параметров:
+	Пример:
+		func original(arg1, arg2, arg3) { }
+
+		var newF = partial(orignal, 'ARG 1');
+
+		newF(arg2, arg3); // данный вызов эквивалентен следующему вызову: original('ARG 1', arg2, arg3);
+
+3) (доп.) newFunc partialRight(func original, obj arg1)
+4) newFunc memoize(func funcToMemoize) - возвращает новую функция с тем же набором параметров что и оригинальная, 
+		НО которая может кешировать и возвращать кешированный результат
