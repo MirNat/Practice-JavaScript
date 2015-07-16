@@ -44,15 +44,18 @@ function separateStringBeforeSpace (stringToParse) {
 
 //1
 document.write('Problem 1. Partial Application<br/>');
-document.write('The function`s work (converts numbers to hexadecimal values) on inputs [0], [10,20], [10,20,30,40,50,60]: ' + numbersToHex(0) + ', ' + numbersToHex(10,20) + ', ' + numbersToHex(10,20,30,40,50,60) +'<br/>');// '00, 0a14, 0a141e28323c'
+document.write('The function`s work (converts numbers to hexadecimal values) on inputs [0], [10,20], [10,20,30,40,50,60]: ' +
+    numbersToHex(0) + ', ' + numbersToHex(10,20) + ', ' + numbersToHex(10,20,30,40,50,60) +'<br/>');// '00, 0a14, 0a141e28323c'
 var numbersToHexPartial = FunctionalJSModule.partialApply(numbersToHex,'');//empty string at the beginning
-document.write('The partial function`s work: ' + numbersToHexPartial(0) + ', ' + numbersToHexPartial(10,20) + ', ' + numbersToHexPartial(10,20,30,40,50,60) + '<br/>');// '00, 0a14, 0a141e28323c'
+document.write('The partial function`s work: ' + numbersToHexPartial(0) + ', ' + numbersToHexPartial(10,20) + ', ' + 
+    numbersToHexPartial(10,20,30,40,50,60) + '<br/>');// '00, 0a14, 0a141e28323c'
 
 
 //2
 document.write('<br/>Problem 2. Currying<br/>');
-document.write('The function`s work (converts rgb to hexadecimal string) on inputs [10,20,30] and [40,50,60]: ' + rgbToHex(10,20,30) + ', ' + rgbToHex(40,50,60) +'<br/>');// '#0a141e, #28323c'
-var rgbToHexCurry = FunctionalJSModule.curry(rgbToHex);//empty string at the beginning
+document.write('The function`s work (converts rgb to hexadecimal string) on inputs [10,20,30] and [40,50,60]: ' + rgbToHex(10,20,30) + 
+    ', ' + rgbToHex(40,50,60) +'<br/>');// '#0a141e, #28323c'
+var rgbToHexCurry = FunctionalJSModule.curry(rgbToHex);
 document.write('The currying function`s work: ' + rgbToHexCurry(10)(20)(30) + ', ' + rgbToHexCurry(40)(50)(60) + '<br/>'); // '#0a141e, #28323c'
 
 
@@ -60,24 +63,28 @@ document.write('The currying function`s work: ' + rgbToHexCurry(10)(20)(30) + ',
 var numbersArray = [ 10, 20, 30, 40, 50 ];
 var stringsArray = [ 'a', 'b', 'c', 'd', 'e' ];
 document.write('<br/>Problem 3. Linear Fold<br/>');
-document.write('The function`s work (adds values) on numbers input [10, 20, 30, 40, 50] and strings input ["a", "b", "c", "d", "e"]: ' + FunctionalJSModule.linearFold( numbersArray, 0, add) +', ' + FunctionalJSModule.linearFold( stringsArray,'', addStrings) + '<br/>');// '150, abcde'
+document.write('The function`s work (adds values) on numbers input [10, 20, 30, 40, 50] and strings input ["a", "b", "c", "d", "e"]: ' + 
+    FunctionalJSModule.linearFold( numbersArray, 0, add) +', ' + FunctionalJSModule.linearFold( stringsArray,'', addStrings) + '<br/>');// '150, abcde'
 
 
 //4
 var myString = "January February March April";
 document.write('<br/>Problem 4. Linear Unfold<br/>');
-document.write('The function`s work (splits string with space and return array) on input "January February March April": ' + FunctionalJSModule.linearUnfold( myString, separateStringBeforeSpace) + '<br/>');// 'January,February,March,April'
+document.write('The function`s work (splits string with space and return array) on input "January February March April": ' + 
+    FunctionalJSModule.linearUnfold( myString, separateStringBeforeSpace) + '<br/>');// 'January,February,March,April'
 
 
 //5
 document.write('<br/>Problem 5. Map<br/>');
-document.write('My map function`s work (convert number to hexadecimal) on input [10,20,30,40,50,60]: ' + FunctionalJSModule.map( [10,20,30,40,50,60], componentToHex) + '<br/>');// '0a,14,1e,28,32,3c'
+document.write('My map function`s work (convert number to hexadecimal) on input [10,20,30,40,50,60]: ' + 
+    FunctionalJSModule.map( [10,20,30,40,50,60], componentToHex) + '<br/>');// '0a,14,1e,28,32,3c'
 document.write('Standart Array.prototype.map function`s work: ' + [10,20,30,40,50,60].map(componentToHex) + '<br/>');// '0a,14,1e,28,32,3c'
 
 
 //6
 document.write('<br/>Problem 6. Filter<br/>');
-document.write('My filter function`s work (convert number to hexadecimal) on input [10,-20,30,-40,50,0]: ' + FunctionalJSModule.filter( [10,-20,30,-40,50,0], positiveNumbersFilter) + '<br/>');// '0a,14,1e,28,32,3c'
+document.write('My filter function`s work (convert number to hexadecimal) on input [10,-20,30,-40,50,0]: ' + 
+    FunctionalJSModule.filter( [10,-20,30,-40,50,0], positiveNumbersFilter) + '<br/>');// '0a,14,1e,28,32,3c'
 document.write('Standart Array.prototype.filter function`s work: ' + [10,-20,30,-40,50,0].filter(positiveNumbersFilter) + '<br/>');// '0a,14,1e,28,32,3c'
 
 
@@ -94,7 +101,8 @@ document.write('The function`s work on 10 random numbers: sum = ' + callValues[0
 
 //9
 document.write('<br/>Problem 9. First <br/>');
-document.write('The function`s work (filter by positive value) on input [-10,-20,30,-40,50,0]: ' + FunctionalJSModule.first([-10,-20,30,-40,50,0], positiveNumbersFilter) + '<br/>');// '30'
+document.write('The function`s work (filter by positive value) on input [-10,-20,30,-40,50,0]: ' + 
+    FunctionalJSModule.first([-10,-20,30,-40,50,0], positiveNumbersFilter) + '<br/>');// '30'
 
 
 //10
