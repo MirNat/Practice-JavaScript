@@ -140,7 +140,7 @@
 
 		return{
 			forEach: function (action) {
-                arrayForReturn = workWithArrays.forEach(arrayForReturn, action);
+                arrayForReturn = forEach(arrayForReturn, action);
                 return this;
             },
 			where: function (predicate) {
