@@ -115,9 +115,9 @@ document.write('The function`s work (add two big numbers) on input [123456789032
 //11
 document.write('<br/>Problem 11. Memoization<br/>');
 document.write('The function`s work (add two big numbers) on input [1234567890321537, 9876543210123159]: <br/>First function`s call: ');
-var addMemoization = FunctionalJSModule.memoization( addWithWriteToConsole, bigNumber1, bigNumber2);
-document.write('Result: ' + addMemoization());
+var addMemoization = FunctionalJSModule.memoization(addWithWriteToConsole);
+document.write('Result: ' + addMemoization(bigNumber1, bigNumber2)); //  FunctionalJSModule.memoization( addWithWriteToConsole, 17, 9)());
 document.write('<br/>Second function`s call: ');
-document.write('Result: ' + addMemoization());
+document.write('Result: ' + addMemoization(bigNumber1, bigNumber2));
 //First function`s call: Calculate and remember for the first time. Calculating. Result: 11111111100444696
 //Second function`s call: I`ve already remembered this one. Result: 11111111100444696 

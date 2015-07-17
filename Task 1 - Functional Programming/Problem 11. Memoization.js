@@ -1,20 +1,22 @@
 (function () {
     'use scrict';
-   FunctionalJSModule.memoization = function (funcToMemoize) {
-        if (typeof funcToMemoize !== 'function') {
-            throw new TypeError('Incorrect input : argument is not a function.');
-        }
-        var result;
-        var lazyEvaluation = funcToMemoize.bind.apply(funcToMemoize, arguments);
+   FunctionalJSModule.memoization = function (functionToMemoize) {
 
-        return function () {
-            if (result) {
-                //document.write(' I`ve already remembered this one. ');
-                return result;
+		  var memoized = {};
+		  var slice = Array.prototype.slice;
+
+
+		return function() {
+			var args = slice.call(arguments);
+            // works for ojects too
+            var index = JSON.stringify(args);
+
+            if (index in memoized) {
+                return memoized[index];
+            } else {
+            // memoized function contents
+                return (memoized[index] = functionToMemoize.apply(this, args));
             }
-           //document.write('Calculate and remember for the first time. ');
-            result = lazyEvaluation();
-            return result;
-        }
+		};
     }
 })();

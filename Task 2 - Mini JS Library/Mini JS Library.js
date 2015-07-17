@@ -1,8 +1,7 @@
 (function () {
     'use scrict';
-
+    MiniJSLibrary = {};
 	//Language
-
 
 	var isArray = function (obj) {
 		return Object.prototype.toString.call(obj) === '[object Array]';
