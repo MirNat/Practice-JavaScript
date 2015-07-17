@@ -1,37 +1,37 @@
-(function () {
+MiniJSLibrary = (function () {
     'use scrict';
-    MiniJSLibrary = {};
+    var miniJSLibrary = {};
 	//Language
 
-	var isArray = function (obj) {
+	miniJSLibrary.isArray = function (obj) {
 		return Object.prototype.toString.call(obj) === '[object Array]';
 	}
 
-	var isBoolean = function (obj) {
+	miniJSLibrary.isBoolean = function (obj) {
 		return typeof obj === 'boolean';
 	}
 
-	var isDate = function (obj) {
+	miniJSLibrary.isDate = function (obj) {
 		return obj instanceof Date && !isNaN(obj.valueOf());
 	}
 
-	var isNumber = function (obj) {
+	miniJSLibrary.isNumber = function (obj) {
 		return typeof obj === 'number';
 	}
 
-	var isString = function (obj) {
+	miniJSLibrary.isString = function (obj) {
 		return typeof obj === 'string';
 	}
 
-	var isFunction = function (obj) {
+	miniJSLibrary.isFunction = function (obj) {
 		return typeof obj === 'function';
 	}
 
-	var isUndefined = function (obj) {
+	miniJSLibrary.isUndefined = function (obj) {
 		return typeof obj === 'undefined';
 	}
 
-	var isNull = function (obj) {
+	miniJSLibrary.isNull = function (obj) {
 		return  obj === null;
 	}
 
@@ -39,7 +39,7 @@
 	// working with arrays
 
 
-	var forEach = function (targetArray, action) {
+	miniJSLibrary.forEach = function (targetArray, action) {
 		if (!Array.isArray(targetArray) || typeof action !== 'function') {
 	        throw new TypeError('Incorrect input: first argument is not an Array or second argument is not a function.');
 	    }
@@ -49,7 +49,7 @@
 		};
 	};
 
-	var where = function (targetArray, predicate) {
+	miniJSLibrary.where = function (targetArray, predicate) {
 		if (!Array.isArray(targetArray) || typeof predicate !== 'function') {
 	        throw new TypeError('Incorrect input: first argument is not an Array or second argument is not a function.');
 	    }
@@ -62,7 +62,7 @@
 		return arraySatisfyingPredicate;
 	};
 
-	var first = function (targetArray, predicate) {
+	miniJSLibrary.first = function (targetArray, predicate) {
 		if (!Array.isArray(targetArray) || typeof predicate !== 'function') {
 	       throw new TypeError('Incorrect input: first argument is not an Array or second argument is not a function.');
 	    }
@@ -75,7 +75,7 @@
 		return targetArray[i];
 	};
 
-	var last = function (targetArray, predicate) {
+	miniJSLibrary.last = function (targetArray, predicate) {
 		if (!Array.isArray(targetArray) || typeof predicate !== 'function') {
 	        throw new TypeError('Incorrect input: first argument is not an Array or second argument is not a function.');
 	    }
@@ -90,7 +90,7 @@
 		return lastFoundValueSatisfyingPredicate;
 	};
 
-	var select = function (targetArray, selector) {
+	miniJSLibrary.select = function (targetArray, selector) {
 		if (!Array.isArray(targetArray) || typeof selector !== 'function') {
 	        throw new TypeError('Incorrect input: first argument is not an Array or second argument is not a function.');
 	    }
@@ -105,7 +105,7 @@
 		return arraySatisfyingSelector;
 	};
 
-	var skip = function (targetArray, number) {
+	miniJSLibrary.skip = function (targetArray, number) {
 		if (!Array.isArray(targetArray) || typeof number !== 'number' || number > targetArray.length) {
 	        throw new TypeError('Incorrect input: first argument is not an Array or second argument is not a Number or number > length of Array.');
 	    }
@@ -118,7 +118,7 @@
 		return skippedArray;
 	};
 
-	var take = function (targetArray, number) {
+	miniJSLibrary.take = function (targetArray, number) {
 		if (!Array.isArray(targetArray) || typeof number !== 'number' || number > targetArray.length) {
 	        throw new TypeError('Incorrect input: first argument is not an Array or second argument is not a Number or number > length of Array.');
 	    }
@@ -131,7 +131,7 @@
 		return takenArray;
 	};
 
-	var asChain = function (targetArray) {
+	miniJSLibrary.asChain = function (targetArray) {
 		if (!Array.isArray(targetArray)) {
 	        throw new TypeError('Incorrect input: argument is not an Array.');
 	    }
@@ -139,33 +139,33 @@
 
 		return{
 			forEach: function (action) {
-                arrayForReturn = forEach(arrayForReturn, action);
+                arrayForReturn = miniJSLibrary.forEach(arrayForReturn, action);
                 return this;
             },
 			where: function (predicate) {
-	        	arrayForReturn = where(arrayForReturn, predicate);
+	        	arrayForReturn = miniJSLibrary.where(arrayForReturn, predicate);
 	        	return this;
 	        },
 	        first: function (predicate) {
-	        	arrayForReturn = first(arrayForReturn, predicate);
+	        	arrayForReturn = miniJSLibrary.first(arrayForReturn, predicate);
 	        	return this;
 	        },
 	        last: function (predicate) {
-	        	arrayForReturn = last(arrayForReturn, predicate);
+	        	arrayForReturn = miniJSLibrary.last(arrayForReturn, predicate);
 	        	return this;
 	        },
 	        select: function (selector) {
-	        	arrayForReturn = select(arrayForReturn, selector);
+	        	arrayForReturn = miniJSLibrary.select(arrayForReturn, selector);
 	        	return this;
 	        },
 
             skip: function(count) {
-                arrayForReturn = skip(arrayForReturn, count);
+                arrayForReturn = miniJSLibrary.skip(arrayForReturn, count);
                 return this;
             },
 
             take: function(count) {
-                arrayForReturn = take(arrayForReturn, count);
+                arrayForReturn = miniJSLibrary.take(arrayForReturn, count);
                 return this;
             },
 
@@ -175,20 +175,5 @@
         };
     };
 
-    MiniJSLibrary.isArray = isArray;
-	MiniJSLibrary.isBoolean = isBoolean;
-	MiniJSLibrary.isDate = isDate;
-	MiniJSLibrary.isNumber = isNumber;
-	MiniJSLibrary.isString = isString;
-	MiniJSLibrary.isFunction = isFunction;
-	MiniJSLibrary.isUndefined = isUndefined;
-	MiniJSLibrary.isNull = isNull;
-	MiniJSLibrary.forEach = forEach;
-	MiniJSLibrary.where = where;
-	MiniJSLibrary.first = first;
-	MiniJSLibrary.last = last;
-	MiniJSLibrary.select = select;
-	MiniJSLibrary.skip = skip;
-	MiniJSLibrary.take = take;
-	MiniJSLibrary.asChain = asChain;
+    return miniJSLibrary;
 })();

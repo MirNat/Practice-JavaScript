@@ -119,7 +119,7 @@ document.write('The function`s work (skips 5 numbers) on input [1,104,375,-7,0,8
 //7
 document.write('<br/>7. newArr take(arr, number)<br/>');
 document.write('The function`s work (takes 5 numbers) on input [1,104,375,-7,0,8,-37,-45,54,-906] <br/>' + MiniJSLibrary.take(numbersArray, number)  + '<br/>');
-//1,104,375,-7,0
+//1,104,375,-7,0/*
 
 
 //chain of calls
