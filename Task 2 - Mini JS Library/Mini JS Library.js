@@ -40,8 +40,12 @@ MiniJSLibrary = (function () {
 
 
 	miniJSLibrary.forEach = function (targetArray, action) {
-		if (!Array.isArray(targetArray) || typeof action !== 'function') {
-	        throw new TypeError('Incorrect input: first argument is not an Array or second argument is not a function.');
+		if (!Array.isArray(targetArray)) {
+	        throw new TypeError('Incorrect input: first argument is not an Array.');
+	    } else {
+	    	if (typeof action !== 'function') {
+	    		throw new TypeError('Incorrect input: second argument is not a function.');
+	    	}
 	    }
 
 		for (var i = 0; i < targetArray.length; i++) {
@@ -50,8 +54,12 @@ MiniJSLibrary = (function () {
 	};
 
 	miniJSLibrary.where = function (targetArray, predicate) {
-		if (!Array.isArray(targetArray) || typeof predicate !== 'function') {
-	        throw new TypeError('Incorrect input: first argument is not an Array or second argument is not a function.');
+		if (!Array.isArray(targetArray)) {
+	        throw new TypeError('Incorrect input: first argument is not an Array.');
+	    } else {
+	    	if (typeof predicate !== 'function') {
+	    		throw new TypeError('Incorrect input: second argument is not a function.');
+	    	}
 	    }
 	    var arraySatisfyingPredicate = [];
 
@@ -63,21 +71,27 @@ MiniJSLibrary = (function () {
 	};
 
 	miniJSLibrary.first = function (targetArray, predicate) {
-		if (!Array.isArray(targetArray) || typeof predicate !== 'function') {
-	       throw new TypeError('Incorrect input: first argument is not an Array or second argument is not a function.');
+		if (!Array.isArray(targetArray)) {
+	        throw new TypeError('Incorrect input: first argument is not an Array.');
+	    } else {
+	    	if (typeof predicate !== 'function') {
+	    		throw new TypeError('Incorrect input: second argument is not a function.');
+	    	}
 	    }
-	    var arraySatisfyingPredicate = [];
-		var i; 
 
-		for (i = 0; i < targetArray.length && !predicate(targetArray[i]); i++) {
+		for (var i = 0; i < targetArray.length && !predicate(targetArray[i]); i++) {
 		}
 
 		return targetArray[i];
 	};
 
 	miniJSLibrary.last = function (targetArray, predicate) {
-		if (!Array.isArray(targetArray) || typeof predicate !== 'function') {
-	        throw new TypeError('Incorrect input: first argument is not an Array or second argument is not a function.');
+		if (!Array.isArray(targetArray)) {
+	        throw new TypeError('Incorrect input: first argument is not an Array.');
+	    } else {
+	    	if (typeof predicate !== 'function') {
+	    		throw new TypeError('Incorrect input: second argument is not a function.');
+	    	}
 	    }
 	    var lastFoundValueSatisfyingPredicate;
 
@@ -91,8 +105,12 @@ MiniJSLibrary = (function () {
 	};
 
 	miniJSLibrary.select = function (targetArray, selector) {
-		if (!Array.isArray(targetArray) || typeof selector !== 'function') {
-	        throw new TypeError('Incorrect input: first argument is not an Array or second argument is not a function.');
+		if (!Array.isArray(targetArray)) {
+	        throw new TypeError('Incorrect input: first argument is not an Array.');
+	    } else {
+	    	if (typeof selector !== 'function') {
+	    		throw new TypeError('Incorrect input: second argument is not a function.');
+	    	}
 	    }
 	    var arraySatisfyingSelector = [];
 
@@ -106,8 +124,16 @@ MiniJSLibrary = (function () {
 	};
 
 	miniJSLibrary.skip = function (targetArray, number) {
-		if (!Array.isArray(targetArray) || typeof number !== 'number' || number > targetArray.length) {
-	        throw new TypeError('Incorrect input: first argument is not an Array or second argument is not a Number or number > length of Array.');
+		if (!Array.isArray(targetArray)) {
+	        throw new TypeError('Incorrect input: first argument is not an Array.');
+	    } else {
+	    	if (typeof number !== 'number'){
+	    		throw new TypeError('Incorrect input: second argument is not a Number.');
+	    	} else {
+	    		if (number > targetArray.length){
+	    			throw new TypeError('Incorrect input: number > length of Array.');
+	    		}
+	    	}
 	    }
 	    var skippedArray = [];
 
@@ -119,8 +145,16 @@ MiniJSLibrary = (function () {
 	};
 
 	miniJSLibrary.take = function (targetArray, number) {
-		if (!Array.isArray(targetArray) || typeof number !== 'number' || number > targetArray.length) {
-	        throw new TypeError('Incorrect input: first argument is not an Array or second argument is not a Number or number > length of Array.');
+		if (!Array.isArray(targetArray)) {
+	        throw new TypeError('Incorrect input: first argument is not an Array.');
+	    } else {
+	    	if (typeof number !== 'number'){
+	    		throw new TypeError('Incorrect input: second argument is not a Number.');
+	    	} else {
+	    		if (number > targetArray.length){
+	    			throw new TypeError('Incorrect input: number > length of Array.');
+	    		}
+	    	}
 	    }
 	    var takenArray = [];
 
