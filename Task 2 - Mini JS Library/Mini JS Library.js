@@ -5,35 +5,35 @@ MiniJSLibrary = (function () {
 
 	miniJSLibrary.isArray = function (obj) {
 		return Object.prototype.toString.call(obj) === '[object Array]';
-	}
+	};
 
 	miniJSLibrary.isBoolean = function (obj) {
 		return typeof obj === 'boolean';
-	}
+	};
 
 	miniJSLibrary.isDate = function (obj) {
 		return obj instanceof Date && !isNaN(obj.valueOf());
-	}
+	};
 
 	miniJSLibrary.isNumber = function (obj) {
 		return typeof obj === 'number';
-	}
+	};
 
 	miniJSLibrary.isString = function (obj) {
 		return typeof obj === 'string';
-	}
+	};
 
 	miniJSLibrary.isFunction = function (obj) {
 		return typeof obj === 'function';
-	}
+	};
 
 	miniJSLibrary.isUndefined = function (obj) {
 		return typeof obj === 'undefined';
-	}
+	};
 
 	miniJSLibrary.isNull = function (obj) {
 		return  obj === null;
-	}
+	};
 
 
 	// working with arrays
@@ -46,7 +46,7 @@ MiniJSLibrary = (function () {
 
 		for (var i = 0; i < targetArray.length; i++) {
 			action(targetArray[i]);
-		};
+		}
 	};
 
 	miniJSLibrary.where = function (targetArray, predicate) {
@@ -57,7 +57,7 @@ MiniJSLibrary = (function () {
 
 		for (var i = 0; i < targetArray.length && predicate(targetArray[i]); i++) {
 			arraySatisfyingPredicate.push(targetArray[i]);
-		};
+		}
 
 		return arraySatisfyingPredicate;
 	};
@@ -70,7 +70,7 @@ MiniJSLibrary = (function () {
 		var i; 
 
 		for (i = 0; i < targetArray.length && !predicate(targetArray[i]); i++) {
-		};
+		}
 
 		return targetArray[i];
 	};
@@ -85,7 +85,7 @@ MiniJSLibrary = (function () {
 			if (predicate(targetArray[i])) {
 				lastFoundValueSatisfyingPredicate = targetArray[i];
 			}
-		};
+		}
 
 		return lastFoundValueSatisfyingPredicate;
 	};
@@ -100,7 +100,7 @@ MiniJSLibrary = (function () {
 			if (selector(targetArray[i])) {
 				arraySatisfyingSelector.push(targetArray[i]);
 			}
-		};
+		}
 
 		return arraySatisfyingSelector;
 	};
@@ -113,7 +113,7 @@ MiniJSLibrary = (function () {
 
 		for (var i = number; i < targetArray.length; i++) {
 			skippedArray.push(targetArray[i]);
-		};
+		}
 
 		return skippedArray;
 	};
@@ -126,7 +126,7 @@ MiniJSLibrary = (function () {
 
 		for (var i = 0; i < number; i++) {
 			takenArray.push(targetArray[i]);
-		};
+		}
 
 		return takenArray;
 	};
@@ -137,7 +137,7 @@ MiniJSLibrary = (function () {
 	    }
 		var arrayForReturn = targetArray;
 
-		return{
+		return {
 			forEach: function (action) {
                 arrayForReturn = miniJSLibrary.forEach(arrayForReturn, action);
                 return this;
