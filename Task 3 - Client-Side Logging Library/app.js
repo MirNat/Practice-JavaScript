@@ -1,9 +1,10 @@
 define(['logger-fabric','logger-exceptions'], function(loggerFabric, loggerExceptions) {
     try {
-        loggerConsole = loggerFabric.getLogger("console");
-        loggerWindow = loggerFabric.getLogger("window");
-        loggerAlert = loggerFabric.getLogger("alert");
-        logger = loggerAlert;//default logger
+        var loggerConsole = loggerFabric.getLogger("console");
+        var loggerWindow = loggerFabric.getLogger("window");
+        var loggerAlert = loggerFabric.getLogger("alert");
+        var logger = loggerAlert;//default logger
+        window.onerror = logger.log;
 
         // Create a new object, that prototypally inherits from the Error constructor.
         function MyError(message) {
@@ -25,7 +26,7 @@ define(['logger-fabric','logger-exceptions'], function(loggerFabric, loggerExcep
         try {
             throw new TypeError('Whoops!', 'someFile.js', 10);
         } catch (e) {
-            loggerAlert.log(e);
+            //loggerAlert.log(e);
         }
 
         try {

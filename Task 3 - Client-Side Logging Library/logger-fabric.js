@@ -3,20 +3,14 @@ define(['alert-window-logger','console-logger','current-window-logger'], functio
 
     return {
         getLogger: function (loggerType) {
-            if (loggerType === 'alert') {
-            	return alertLogger;
-            } else {
-            	if (loggerType === 'console') {
-            		return consoleLogger;
-            	} else {
-            		if (loggerType === 'window') {
-	            		return windowLogger;
-	            	}
-	            	throw new IncorrectLoggerArgument('loggerType');
-            	}
+            switch(loggerType) {
+                case 'alert': return alertLogger;
+                case 'console':	return consoleLogger;
+            	case 'window': return windowLogger;
+	            default: throw new IncorrectLoggerArgument('loggerType');
             }
         } 
-    }
+    };
 });
 
 

@@ -1,12 +1,12 @@
-define(['default-logger', 'logger-exceptions'], function(defaultLogger, loggerExceptions) {
+define(['base-logger', 'logger-exceptions'], function(baseLogger, loggerExceptions) {
     return {
         log: function (objectToLog) {
-                var dataToLog = defaultLogger.log(objectToLog);
+                var dataToLog = baseLogger.log.call(this, objectToLog);
                 if (window.console && window.console.log) {
                     window.console.log(dataToLog);
                 } else {
                     throw new loggerExceptions.UnavailableOutputMethodError('Window console unavailable.');
                 }
             }
-        } 
+        }; 
 });
