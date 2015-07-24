@@ -1,4 +1,6 @@
-define(['base-logger', 'logger-exceptions'], function(baseLogger, loggerExceptions) {
+define(['base-logger', 'logger-exceptions/unavailable-output-method-error'], function(baseLogger, UnavailableOutputMethodError) {
+    'use strict';
+
     function windowLog () {};
     windowLog.prototype = Object.create(baseLogger.log.prototype);
     windowLog.prototype.log = function (objectToLog) {
@@ -6,14 +8,9 @@ define(['base-logger', 'logger-exceptions'], function(baseLogger, loggerExceptio
         if (window.document && window.document.write) {
             window.document.write(dataToLog);
         } else {
-            throw new loggerExceptions.UnavailableOutputMethodError('Writing to current window unavailable.');
+            throw new UnavailableOutputMethodError('Writing to current window unavailable.');
         }
     };
-    var windowLogger = new windowLog();
 
-   return {
-        log: function (objectToLog) {
-                return windowLogger.log(objectToLog);
-            }
-        };
+    return new windowLog();
 });

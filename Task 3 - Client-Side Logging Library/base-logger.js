@@ -1,58 +1,58 @@
-define(['logger-exceptions'], function (loggerExceptions) {
+define(['logger-exceptions/incorrect-logger-argument-error'], function (IncorrectLoggerArgument) {
     'use scrict';
 
     var getUserFriendlyErrorString = function (error) {
         var errorStringArray = [];
         if (error) {
-            if (typeof error.name !== 'undefined') {
+            if (error.name) {
                errorStringArray.push('Name: ' + error.name);
             }
-            if (typeof error.message !== 'undefined') {
+            if (error.message) {
                 errorStringArray.push('Message: ' + error.message);
             }
-            if (typeof error.fileName !== 'undefined') {
+            if (error.fileName) {
                 errorStringArray.push('File Name: ' + error.fileName);
             }
-            if (typeof error.lineNumber !== 'undefined') {
+            if (error.lineNumber) {
                 errorStringArray.push('Line Number: ' + error.lineNumber);
             }
-            if (typeof error.columnNumber !== 'undefined') {
+            if (error.columnNumber) {
                 errorStringArray.push('Column Number: ' + error.columnNumber);
             }
-            if (typeof error.description !== 'undefined') {
+            if (error.description) {
                 errorStringArray.push('Description: ' + error.description);
             }
-            if (typeof error.constructor !== 'undefined') {
+            if (error.constructor) {
                 errorStringArray.push('Constructor: ' + error.constructor);
             }
         }
-        var str = errorStringArray.join('; ');
-        return str;
+
+        return errorStringArray.join('; ');
     }
 
-    var getDateTime = function () {
-        var currentdate = new Date(); 
-        return  currentdate.getDate() + "/"
-            + (currentdate.getMonth()+1)  + "/" 
-            + currentdate.getFullYear() + " "  
-            + currentdate.getHours() + ":"  
-            + currentdate.getMinutes() + ":" 
-            + currentdate.getSeconds() + " ";
+    var getCurrentDateTime = function () {
+        var currentDate = new Date(); 
+        return  currentDate.getDate() + "/"
+            + (currentDate.getMonth()+1)  + "/" 
+            + currentDate.getFullYear() + " "  
+            + currentDate.getHours() + ":"  
+            + currentDate.getMinutes() + ":" 
+            + currentDate.getSeconds() + " ";
     };
 
     var log = function (objectToLog) {
         try {
-            var datetime = getDateTime();
+            var currentDateTime = getCurrentDateTime();
             if (typeof objectToLog === 'string') {
-                return datetime.concat(objectToLog);         
+                return currentDateTime.concat(objectToLog);         
             } else {
                 if(objectToLog instanceof Error) {
-                    return datetime.concat(getUserFriendlyErrorString(objectToLog));
+                    return currentDateTime.concat(getUserFriendlyErrorString(objectToLog));
                 }
-                return datetime.concat('error happened on object: ' + JSON.stringify(objectToLog));
+                return currentDateTime.concat('error happened on object: ' + JSON.stringify(objectToLog));
             }  
         } catch (e) {
-            throw new loggerExceptions.IncorrectLoggerArgument('objectToLog');
+            throw new IncorrectLoggerArgument('objectToLog');
         }
     };
 
